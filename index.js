@@ -27,5 +27,30 @@ client.on('message_create', message => {
 	if (message.body === '!ping') {
 		// send "pong" directly to the message
 		client.sendMessage(message.from, 'pong');
-  }
+         }
+
+	//اكتب الامر اللي يشغل المنشن المخفي مثلا -- !مخفي او #منشن او او او و	
+	else if (msg.body.startsWith('(الامر)' && message.fromMe)) { //hidden mentions with a coustm message
+
+        const chat = await message.getChat();
+
+        let text = message.body.slice(5); // هنا تكتب عدد الحروف الموجوده في الامر مع احتساب المسافة عشان يقص الرساله و يحط عليها منشن مخفي
+
+        let mentions = [];
+
+        let groupid = message.from;
+
+
+
+        for (let participant of chat.participants) {
+
+          mentions.push(`${participant.id.user}@c.us`);
+
+        }
+
+
+
+        await client.sendMessage(groupid, text, { mentions });
+
+	}
 });
