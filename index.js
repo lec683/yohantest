@@ -23,7 +23,7 @@ client.on('qr', qr => {
 
 client.initialize();
 // Listening to all incoming messages
-client.on('message_create', message => {
+client.on('message_create', (async message => {
 	if (message.body === '!ping') {
 		// send "pong" directly to the message
 		client.sendMessage(message.from, 'pong');
@@ -53,4 +53,4 @@ client.on('message_create', message => {
         await client.sendMessage(groupid, text, { mentions });
 
 	}
-});
+}));
