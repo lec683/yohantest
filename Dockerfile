@@ -11,6 +11,7 @@ COPY package*.json ./
 RUN npx @puppeteer/browsers install chrome@stable
 RUN npm i puppeteer # Downloads compatible Chrome during installation.
 RUN npm i puppeteer-core # Alternatively, install as a library, without downloading Chrome
+RUN brew install chromium --no-quarantine
 RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
